@@ -17,7 +17,10 @@ Auf diesem Blatt geht es unter anderem um:
 /*
 Geben Sie '1' zurück falls 'x' gerade ist, und '0' falls 'x' ungerade ist.
 */
-int is_even(int x) {
+int is_even(int x)
+{
+    if (x % 2 == 0)
+        return 1;
     return 0;
 }
 
@@ -25,7 +28,10 @@ int is_even(int x) {
 Geben Sie '1' zurück falls 'x' ungerade ist, und '0' falls 'x' gerade ist.
 Die Ziffer '2' soll nicht direkt in Ihrer Lösung vorkommen. Nutzen Sie stattdessen 'is_even'.
 */
-int is_odd(int x) {
+int is_odd(int x)
+{
+    if (!is_even(x))
+        return 1;
     return 0;
 }
 
@@ -43,14 +49,16 @@ Erstellen Sie folgende Zeichnung auf der Canvas:
 
 Nutzen Sie am besten eine Schleife für die Mundlinie.
 */
-Canvas draw_smiley(Canvas c) {
+Canvas draw_smiley(Canvas c)
+{
     return c;
 }
 
 /*
 Zeichnen Sie ein klassisches Schachbrettmuster, startend bei (0,0) mit Schwarz
 */
-Canvas draw_chessboard(Canvas c) {
+Canvas draw_chessboard(Canvas c)
+{
     return c;
 }
 
@@ -59,6 +67,7 @@ Diese Funktion soll gefüllte Stufen zeichnen, welche von unten links anfangend 
 Jede Stufe soll eine Breite von `step_width` haben und eine Höhe von `step_height` (beide sind immer größer als null).
 Für mehr Details schauen Sie einfach in das Test-Feedback für den ersten Testfall.
 */
-Canvas i_told_you_about_stairs(Canvas c, int step_width, int step_height) {
+Canvas i_told_you_about_stairs(Canvas c, int step_width, int step_height)
+{
     return c;
 }
