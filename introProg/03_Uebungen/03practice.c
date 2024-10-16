@@ -51,6 +51,15 @@ Nutzen Sie am besten eine Schleife für die Mundlinie.
 */
 Canvas draw_smiley(Canvas c)
 {
+    for (int i = 2; i <= 4; i += 2)
+    {
+        canvas_set_black(c, 1, i);
+        canvas_set_black(c, 7, i);
+    }
+    for (int i = 2; i <= 6; i++)
+    {
+        canvas_set_black(c, i, 1);
+    }
     return c;
 }
 
@@ -59,6 +68,17 @@ Zeichnen Sie ein klassisches Schachbrettmuster, startend bei (0,0) mit Schwarz
 */
 Canvas draw_chessboard(Canvas c)
 {
+    for (int i = 0; i < canvas_width(c); i++)
+    {
+        for (int j = 0; j < canvas_height(c); j++)
+        {
+            if (is_even(i + j))
+            {
+                canvas_set_black(c, i, j);
+            }
+        }
+    }
+
     return c;
 }
 
@@ -69,5 +89,29 @@ Für mehr Details schauen Sie einfach in das Test-Feedback für den ersten Testf
 */
 Canvas i_told_you_about_stairs(Canvas c, int step_width, int step_height)
 {
+    int i = 0;
+    int j = step_height;
+    while (i < canvas_width(c) + step_width && j < canvas_height(c) + step_height) // die letzte Treppe könnte unvollständig sein
+    {
+        for (int x = i; x < canvas_width(c); x++)
+        {
+            for (int y = j - step_height; y < j; y++)
+            {
+                if (x < canvas_width(c) && y < canvas_height(c))
+                    canvas_set_black(c, x, y);
+            }
+        }
+        i += step_width;
+        j += step_height;
+    }
+
+    /*
+    for (int i = 0; i < canvas_width(c); i += step_width) // Abstand zum linken Rand
+    {
+        for (int j = step_height; j < canvas_height(c); j += step_height) //
+        {
+        }
+    }
+*/
     return c;
 }
