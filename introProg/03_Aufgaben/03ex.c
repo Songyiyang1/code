@@ -94,9 +94,9 @@ Canvas first_canvas_exercise(Canvas c)
     Die linke untere Ecke der Canvas ist der Koordinatenursprung, dort sind die x- und die y-Koordinate jeweils `0`.
     Nach rechts steigen die x-Koordinaten, nach oben die y-Koordinaten.
     */
-    c = canvas_set_black(c, 0, 5);
-    c = canvas_set_black(c, 2, 0);
-    c = canvas_set_black(c, 12, 1);
+    c = canvas_set_black(c, 1, 5);
+    c = canvas_set_black(c, 2, 1);
+    c = canvas_set_black(c, 13, 4);
 
     /*
     Diese drei Funktionsaufrufe hier drüber färben drei unterschiedliche Pixel der Canvas schwarz.
@@ -139,6 +139,10 @@ Hinweis: Koordinaten beginnen bei `0`, nicht bei `1`.
 */
 Canvas color_corners(Canvas c)
 {
+    canvas_set_black(c, canvas_width(c) - 1, canvas_height(c) - 1);
+    canvas_set_black(c, canvas_width(c) - 1, 0);
+    canvas_set_black(c, 0, canvas_height(c) - 1);
+    canvas_set_black(c, 0, 0);
     return c;
 }
 
@@ -148,6 +152,14 @@ Färben Sie alle Pixel der Canvas schwarz.
 */
 Canvas paint_it_black(Canvas c)
 {
+    for (int i = 0; i < canvas_width(c); i++)
+    {
+        for (int j = 0; j < canvas_height(c); j++)
+        {
+            canvas_set_black(c, i, j);
+        }
+    }
+
     return c;
 }
 
@@ -160,6 +172,16 @@ Falls eine Reihe nicht breit genug ist, färben Sie alle Pixel dieser Reihe schw
 */
 Canvas descending_diagonal(Canvas c)
 {
+    int h = 0; // Abstand von oben
+    for (int i = 0; i < canvas_width(c); i++)
+    {
+        for (int j = 0; j < canvas_height(c) - h; j++)
+        {
+            canvas_set_black(c, i, j);
+        }
+        h++;
+    }
+
     return c;
 }
 
@@ -171,6 +193,15 @@ auf die Canvas passt, sollen einfach die Teile ignoriert werden welche außerhal
 */
 Canvas draw_rectangle(Canvas c, int x, int y, int width, int height)
 {
+    for (int i = x; i < x + width; i++)
+    {
+        for (int j = y; j > y - height; j--)
+        {
+            if (i < canvas_width(c) && j >= 0 && i >= 0 && j < canvas_height(c))
+                canvas_set_black(c, i, j);
+        }
+    }
+
     return c;
 }
 
@@ -185,5 +216,6 @@ Wir empfehlen beides auszuprobieren und selbst zu entscheiden welche Lösung Sie
 */
 Canvas draw_rectangle_via_corners(Canvas c, int x0, int y0, int x1, int y1)
 {
+    draw_rectangle(c, x0, y0, x1 - x0 + 1, y0 - y1 + 1);
     return c;
 }
