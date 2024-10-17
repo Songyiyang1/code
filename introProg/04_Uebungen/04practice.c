@@ -32,8 +32,68 @@ Beispiele: 'kaprekar_count_steps(792) == 3', 'kaprekar_count_steps(693) == 2',
 Hinweis: Sollte die Eingabe 'x' kleiner als 100 sein (also weniger als 3 Dezimalstellen besitzen), sollte sie trotzdem
 dreistellig behandelt werden, indem Nullen vorangesetzt werden. D.H. 64 ~> 640 - 046 = 594.
 */
-int kaprekar_count_steps(int x) {
-    return 0;
+
+int sort_max(int x)
+{
+    int x1 = x % 10;
+    int x2 = (x / 10) % 10;
+    int x3 = (x / 100) % 10;
+    if (x1 > x2)
+    {
+        int temp = x1;
+        x1 = x2;
+        x2 = temp;
+    }
+    if (x2 > x3)
+    {
+        int temp = x2;
+        x2 = x3;
+        x3 = temp;
+    }
+    if (x1 > x2)
+    {
+        int temp = x1;
+        x1 = x2;
+        x2 = temp;
+    }
+    return x3 * 100 + x2 * 10 + x1;
+}
+int sort_min(int x)
+{
+    int x1 = x % 10;
+    int x2 = (x / 10) % 10;
+    int x3 = (x / 100) % 10;
+    if (x1 < x2)
+    {
+        int temp = x1;
+        x1 = x2;
+        x2 = temp;
+    }
+    if (x2 < x3)
+    {
+        int temp = x2;
+        x2 = x3;
+        x3 = temp;
+    }
+    if (x1 < x2)
+    {
+        int temp = x1;
+        x1 = x2;
+        x2 = temp;
+    }
+    return x3 * 100 + x2 * 10 + x1;
+}
+
+int kaprekar_count_steps(int x)
+{
+    int count = 0;
+    while (x != sort_max(x) - sort_min(x))
+    {
+        x = sort_max(x) - sort_min(x);
+        count++;
+    }
+
+    return count;
 }
 
 /*
@@ -43,6 +103,14 @@ von 'x' die Zahl 'y' ergibt.
 Bonus: Gibt es ein Muster, dass man ausnutzen kann um 'kaprekar_count_steps' effizienter zu implementieren als
 alle Schritte durchzuführen?
 */
-Canvas plot_kaprekar(Canvas c) {
+Canvas plot_kaprekar(Canvas c)
+{
+    for (int i = 0; i < canvas_width(c); i++)
+    {
+        int j = sort_max(i) - sort_min(i);
+        if (j < canvas_height(c))
+            canvas_set_black(c, i, j);
+    }
+
     return c;
 }
