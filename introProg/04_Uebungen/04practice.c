@@ -32,30 +32,25 @@ Beispiele: 'kaprekar_count_steps(792) == 3', 'kaprekar_count_steps(693) == 2',
 Hinweis: Sollte die Eingabe 'x' kleiner als 100 sein (also weniger als 3 Dezimalstellen besitzen), sollte sie trotzdem
 dreistellig behandelt werden, indem Nullen vorangesetzt werden. D.H. 64 ~> 640 - 046 = 594.
 */
-
+int swap(int *a, int *b)
+{
+    int z;
+    z = *a;
+    *a = *b;
+    *b = z;
+    return 0;
+}//VL6
 int sort_max(int x)
 {
     int x1 = x % 10;
     int x2 = (x / 10) % 10;
     int x3 = (x / 100) % 10;
     if (x1 > x2)
-    {
-        int temp = x1;
-        x1 = x2;
-        x2 = temp;
-    }
+        swap(&x1, &x2);
     if (x2 > x3)
-    {
-        int temp = x2;
-        x2 = x3;
-        x3 = temp;
-    }
+        swap(&x3, &x2);
     if (x1 > x2)
-    {
-        int temp = x1;
-        x1 = x2;
-        x2 = temp;
-    }
+        swap(&x1, &x2);
     return x3 * 100 + x2 * 10 + x1;
 }
 int sort_min(int x)
@@ -64,23 +59,11 @@ int sort_min(int x)
     int x2 = (x / 10) % 10;
     int x3 = (x / 100) % 10;
     if (x1 < x2)
-    {
-        int temp = x1;
-        x1 = x2;
-        x2 = temp;
-    }
+        swap(&x1, &x2);
     if (x2 < x3)
-    {
-        int temp = x2;
-        x2 = x3;
-        x3 = temp;
-    }
+        swap(&x3, &x2);
     if (x1 < x2)
-    {
-        int temp = x1;
-        x1 = x2;
-        x2 = temp;
-    }
+        swap(&x1, &x2);
     return x3 * 100 + x2 * 10 + x1;
 }
 

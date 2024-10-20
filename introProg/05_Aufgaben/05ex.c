@@ -16,7 +16,13 @@ Zeichnen Sie eine horizontale Linie der Länge `width`, deren am weitesten links
 _Benutzen Sie keine Schleifen - Die Aufgabe soll über Rekursion gelöst werden!_
 
 */
-Canvas recursive_line(Canvas c, int x, int y, int width) {
+Canvas recursive_line(Canvas c, int x, int y, int width)
+{
+    if (width == 0)
+        return c;
+    if (x >= 0 && x < canvas_width(c) && y >= 0 && y < canvas_height(c))
+        canvas_set_black(c, x, y);
+    recursive_line(c, x + 1, y, width - 1);
     return c;
 }
 
@@ -26,7 +32,12 @@ Zeichnen Sie ein Rechteck mit der Breite `width` und der Höhe `height`. Der Pix
 
 _Benutzen Sie keine Schleifen, die Aufgabe soll über Rekursion gelöst werden!_
 */
-Canvas recursive_rectangle(Canvas c, int x, int y, int width, int height) {
+Canvas recursive_rectangle(Canvas c, int x, int y, int width, int height)
+{
+    if (height == 0)
+        return c;
+    recursive_line(c, x, y, width);
+    recursive_rectangle(c, x, y + 1, width, height - 1);
     return c;
 }
 
@@ -40,8 +51,18 @@ Die Fibonaccizahlen sind wie folgt definiert:
 
 Berechne die `n`-te Fibonaccizahl.
 */
-int fibonacci(int n) {
-    return 0;
+int recursive(int x1, int x2, int n)
+{
+    if (n == 0)
+        return x1 + x2;
+    return recursive(x2, x1 + x2, n - 1);
+}
+int fibonacci(int n)
+{
+    int ans = 1;
+    if (n > 1)
+        ans = recursive(0, 1, n - 1);
+    return ans;
 }
 
 /*
@@ -53,6 +74,19 @@ zu vier direkte Nachbarn - die Diagonalen zählen nicht.
 
 Funktionen, um die Farbe eines Pixels auf der Canvas zu bestimmen, sind im Headerfile der Canvas dokumentiert.
 */
-Canvas bucket_fill(Canvas c, int x, int y) {
+Canvas bucket_fill(Canvas c, int x, int y)
+{
+    if (x < 0 || x >= canvas_width(c) || y < 0 || y >= canvas_height(c))
+        return c;
+    if (pixel_is_white(c, x, y))
+    {
+        canvas_set_black(c, x, y);
+        bucket_fill(c, x + 1, y);
+        bucket_fill(c, x - 1, y);
+        bucket_fill(c, x, y + 1);
+        bucket_fill(c, x, y - 1);
+    }
+    else
+        return c;
     return c;
 }
