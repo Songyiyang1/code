@@ -1,17 +1,16 @@
 #include <stdio.h>
+#include <stdint.h>
+
 int main()
 {
-    int count = 0;
-    int n = 0;
-    scanf("%d", &n);
-    while (n != 1)
-    {
-        if (n % 2)
-            n = n * 3 + 1;
-        else
-            n /= 2;
-        count++;
-    }
-    printf("%d", count);
+    uint8_t my_counter = 254;
+    my_counter = my_counter + 1;
+    // statt “int my_counter“
+    // alle bekannten Operatoren
+    // funktionieren: +, -, *, /, %
+    // gibt 255 aus
+    printf("%d\n", my_counter);
+    my_counter = my_counter + 1;
+    printf("%d\n", my_counter);
     return 0;
 }
