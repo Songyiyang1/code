@@ -28,7 +28,17 @@ schwarz gefärbt werden). Die Turtle ist anfangs an Position (0, 0), ist nach re
 */
 void turtle_stripes(TurtleCanvas *c)
 {
-    
+    for (int j = 0; j < turtle_canvas_height(c); j++)
+    {
+        for (int i = 0; i <= turtle_canvas_width(c); i++)
+        {
+            turtle_advance(c);
+        }
+        turtle_rotate_left(c);
+        turtle_advance(c);
+        turtle_rotate_right(c);
+        c->draw_black = !c->draw_black;
+    }
     return;
 }
 
@@ -45,7 +55,13 @@ Geben Sie einen Pointer auf das erste Vorkommen der größten Zahl im Eingabearr
 */
 uint16_t *find_maximal_number(uint16_t numbers[], size_t numbers_len)
 {
-    return numbers;
+    uint16_t *max = numbers;
+    for (int i = 1; i < numbers_len; i++)
+    {
+        if (numbers[i] > *max)
+            max = &numbers[i];
+    }
+    return max;
 }
 
 /*
@@ -54,6 +70,13 @@ Geben Sie (einen Pointer auf) das Teilarray zurück, welches ab dem ersten Vorko
 */
 uint16_t *find_subarray_starting_at_maximal_number(uint16_t numbers[], size_t numbers_len)
 {
+    uint16_t *max = numbers;
+    for (int i = 1; i < numbers_len; i++)
+    {
+        if (numbers[i] > *max)
+            max = &numbers[i];
+    }
+    numbers = max;
     return numbers;
 }
 
@@ -64,7 +87,16 @@ Beispiel: Im Array {1, 3, 7, 4} ist die größte Distanz die zwischen 1 und 7, u
 */
 uint16_t find_maximum_distance(uint16_t numbers[], size_t numbers_len)
 {
-    return 0;
+    int min = numbers[0];
+    int max = numbers[0];
+    for (int i = 1; i < numbers_len; i++)
+    {
+        if (numbers[i] > max)
+            max = numbers[i];
+        if (numbers[i] < min)
+            min = numbers[i];
+    }
+    return max - min;
 }
 
 /*
@@ -74,7 +106,25 @@ Beispiel: Im Array {1, 3, 7, 4} ist die kleinste Distanz die zwischen 3 und 4, u
 */
 uint16_t find_minimum_distance(uint16_t numbers[], size_t numbers_len)
 {
-    return 0;
+    int min = numbers[1] - numbers[0];
+    for (int i = 0; i < numbers_len - 1; i++)
+    {
+        for (int j = i + 1; j < numbers_len; j++)
+        {
+            if (numbers[j] > numbers[i])
+            {
+                if (numbers[j] - numbers[i] < min)
+                    min = numbers[j] - numbers[i];
+            }
+            else
+            {
+                if (numbers[i] - numbers[j] < min)
+                    min = numbers[i] - numbers[j];
+            }
+        }
+    }
+
+    return min;
 }
 
 /*
@@ -85,6 +135,8 @@ einschließlich die von 5 gemeint: 1, 4, 9, 16, 25.
 */
 void square_ascending(uint16_t numbers[], size_t numbers_len)
 {
+    for (int i = 0; i < numbers_len; i++)
+        numbers[i] = (i + 1) * (i + 1);
     return;
 }
 
@@ -95,5 +147,21 @@ Beispiel: Ist `in` {1, 4, 3, 7, 4}, so soll `out` am Ende {1, 3, 4, 4, 7} sein.
 */
 void sort_ascending(uint16_t in[], uint16_t out[], size_t len)
 {
+    uint16_t tmp;
+    for (int i = 0; i < len; i++)
+    {
+        for (int j = 0; j < len-1; j++)
+        {
+            if (in[j] > in[j + 1])
+            {
+                tmp = in[j];
+                in[j] = in[j + 1];
+                in[j + 1] = tmp;
+            }
+        }
+        
+    }
+    for (int i = 0; i < len; i++)
+        out[i] = in[i];
     return;
 }
