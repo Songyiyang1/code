@@ -188,12 +188,14 @@ Erstellen Sie einen Pfannkuchen aus genau `n` Schichten Teigfladen (`n` ist mind
 */
 PileOfPancakes mille_crepes(uint32_t n)
 {
-    PileOfPancakes p = {.layer = ActualPancake, .further_layers = NULL};
-    for (int i = 1; i < n; i++)
+    if (n == 1)
     {
-        PileOfPancakes p1 = {.layer = ActualPancake, .further_layers = &p};
-        p = p1;
+        PileOfPancakes p = {.layer = ActualPancake, .further_layers = NULL};
+        return p;
     }
+    PileOfPancakes *pancake = (PileOfPancakes *)malloc(sizeof(PileOfPancakes));
+    *pancake = mille_crepes(n - 1);
+    PileOfPancakes p = {.layer = ActualPancake, .further_layers = pancake};
     return p;
 }
 
@@ -231,5 +233,8 @@ Hinweis: Wir starten bei `1`.
 */
 uint16_t *create_dynamic_array(size_t x)
 {
-    return NULL;
+    uint16_t *q = (uint16_t *)malloc(x * sizeof(uint16_t));
+    for (int i = 0; i < x; i++)
+        *(q + i) = (i + 1) * (i + 1);
+    return q;
 }
