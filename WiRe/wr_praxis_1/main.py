@@ -211,8 +211,6 @@ def inverse_rotation(theta: float) -> np.ndarray:
 
 if __name__ == '__main__':
     print(
-        "All requested functions for󠀲󠀰󠀲󠀴󠀵 the assignment have to be implemented in this file and uploaded to the "
-        "server for the grading.\nTo test your implemented functions you can "
-        "implement/run tests in the file tests.py (> python3 -v test.py [Tests.<test_function>]).")
+        "Matrix are just changing the canonical basis of the vector space")
 
 # TODO: Replace this with a thoughful comment
