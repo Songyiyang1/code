@@ -1,6 +1,8 @@
 
 import numpy as np
 import unittest
+
+from WiRe.wr_praxis_1.main import machine_epsilon
 from main import rotation_matrix, matrix_multiplication, compare_multiplication, inverse_rotation
 
 class Tests(unittest.TestCase):
@@ -17,16 +19,16 @@ class Tests(unittest.TestCase):
             self.assertTrue(np.allclose(r[0], r[1]))
 
     def test_machine_epsilon(self):
-        pass
         # TODO
-        
+        eps=machine_epsilon(np.dtype(np.float64))
+        print(eps)
     def test_is_close(self):
         pass
         # TODO
         
     def test_rotation_matrix(self):
-        pass
         # TODO
+        print(rotation_matrix(0.0))
 
     def test_inverse_rotation(self):
         pass

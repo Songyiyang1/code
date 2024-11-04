@@ -1,6 +1,3 @@
-from logging import raiseExceptions
-from random import randint
-
 import numpy as np
 
 from lib import timedcall, plot_2d
@@ -30,7 +27,7 @@ def matrix_multiplication(a: np.ndarray, b: np.ndarray) -> np.ndarray:
     m_b, p = b.shape
 
     # TODO: test if shape of matrices is compatible and raise error if not
-    if (m_a != m_b): raise ValueError("shape of matrices is not compatible")
+    if (m_a != m_b): raise ValueError()
     # Initialize result matrix with zeros
     c = np.zeros((n, p))
 
@@ -108,18 +105,19 @@ def machine_epsilon(fp_format: np.dtype) -> np.number:
     """
 
     # TODO: create epsilon element with correct initial value and data format fp_format
-    eps = fp_format.type(0.0)
+    eps = fp_format.type(1.0)
 
     # Create necessary variables for iteration
     one = fp_format.type(1.0)
     two = fp_format.type(2.0)
     i = 0
-
     print('  i  |       2^(-i)        |  1 + 2^(-i)  ')
     print('  ----------------------------------------')
 
     # TODO: determine machine precision without the use of numpy.finfo()
-
+    while one+eps!=one:
+        eps/=two
+    eps*=two #one time too much division in the loop
     print('{0:4.0f} |  {1:16.8e}   | equal 1'.format(i, eps))
     return eps
 
@@ -146,9 +144,14 @@ def close(a: np.ndarray, b: np.ndarray, eps: np.number = 1e-08) -> bool:
     """
     isclose = False
     # TODO: check if a and b are compareable
-
+    if a.shape!=b.shape:
+        raise ValueError()
     # TODO: check if all entries in a are close to the corresponding entry in b
-
+    for i in range(a.shape[0]):
+        for j in range(a.shape[1]):
+            if abs(a[i,j]-b[i,j])>eps:
+                return False
+    isclose = True
     return isclose
 
 
@@ -173,11 +176,12 @@ def rotation_matrix(theta: float) -> np.ndarray:
     r = np.zeros((2, 2))
 
     # TODO: convert angle to radians
-
+    theta=theta/180*np.pi
     # TODO: calculate diagonal terms of matrix
-
+    diagonal=np.cos(theta)
     # TODO: off-diagonal terms of matrix
-
+    off_diagonal=np.sin(theta)
+    r[:]=[[diagonal,-off_diagonal],[off_diagonal,diagonal]]
     return r
 
 
@@ -198,7 +202,10 @@ def inverse_rotation(theta: float) -> np.ndarray:
     # TODO: compute inverse rotation matrix
 
     m = np.zeros((2, 2))
-
+    theta=theta/180*np.pi
+    diagonal = np.cos(theta)
+    off_diagonal = np.sin(theta)
+    m[:] = [[diagonal, off_diagonal], [-off_diagonal, diagonal]] #inverse is equal transposed
     return m
 
 
