@@ -4,6 +4,7 @@
         "math.h": "c",
         "06_canvas.h": "c",
         "stdint.h": "c",
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "stdlib.h": "c"
     }
 }
