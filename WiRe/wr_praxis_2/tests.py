@@ -10,8 +10,8 @@ from main import compute_tomograph, gaussian_elimination
 
 class Tests(unittest.TestCase):
     def test_gaussian_elimination(self):
-        A = np.random.randn(4, 4)
-        x = np.random.rand(4)
+        A = np.array([[4, -2, 2],[-2,1,3],[2,-2,2]],np.float64)
+        x = np.random.rand(3)
         b = np.dot(A, x)
         A_elim, b_elim = gaussian_elimination(A, b)
         self.assertTrue(np.allclose(np.linalg.solve(A_elim, b_elim), x))  # Check if system is still solvable

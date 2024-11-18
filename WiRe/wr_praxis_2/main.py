@@ -1,5 +1,5 @@
-
 import numpy as np
+
 import tomograph
 
 
@@ -33,9 +33,20 @@ def gaussian_elimination(A: np.ndarray, b: np.ndarray, use_pivoting: bool = True
     b = b.copy()
 
     # TODO: Test if shape of matrix and vector is compatible and raise ValueError if not
-
+    if A.shape[0] != b.shape[0] or A.shape[0] != A.shape[1]:
+        raise ValueError()
     # TODO: Perform gaussian elimination
-
+    for j in range(0, A.shape[0] - 1):  # j(+1)-th step of elimination
+        if not use_pivoting:
+            if A[j, j] == 0:
+                raise ValueError()
+        else:  # pivoting
+            i_max = np.argmax(np.abs(A[j:, j])) + j  # +j because the index is now from j-th row!!!!!!!
+            A[[j, i_max], :] = A[[i_max, j], :]  # switch the row
+            b[[j, i_max]] = b[[i_max, j]]
+        for row in range(j + 1, A.shape[0]):
+            b[row] -= A[row, j] / A[j, j] * b[j]  # we must first compute b because A will change!!!!!!
+            A[row, :] -= A[row, j] / A[j, j] * A[j, :]
     return A, b
 
 
@@ -93,12 +104,9 @@ def compute_cholesky(M: np.ndarray) -> np.ndarray:
     # TODO check for symmetry and raise an exception of type ValueError
     (n, m) = M.shape
 
-
-
     # TODO build the factorization and raise a ValueError in case of a non-positive definite input matrix
 
     L = np.zeros((n, n))
-
 
     return L
 
@@ -125,10 +133,8 @@ def solve_cholesky(L: np.ndarray, b: np.ndarray) -> np.ndarray:
     # TODO Check the input for validity, raising a ValueError if this is not the case
     (n, m) = L.shape
 
-
     # TODO Solve the system by forward- and backsubstitution
     x = np.zeros(m)
-
 
     return x
 
@@ -173,7 +179,6 @@ def setup_system_tomograph(n_shots: np.int64, n_rays: np.int64, n_grid: np.int64
     # lengths: lengths of segments in intersected cells
     # The tuple (ray_indices[n], isect_indices[n], lengths[n]) stores which ray has intersected which cell with which length. n runs from 0 to the amount of ray/cell intersections (-1) of this measurement.
     intensities, ray_indices, isect_indices, lengths = tomograph.take_measurement(n_grid, n_rays, theta)
-
 
     return [L, g]
 
