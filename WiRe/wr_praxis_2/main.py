@@ -72,12 +72,21 @@ def back_substitution(A: np.ndarray, b: np.ndarray) -> np.ndarray:
     """
 
     # TODO: Test if shape of matrix and vector is compatible and raise ValueError if not
-
+    if A.shape[0] != b.shape[0]:
+        raise ValueError()
     # TODO: Initialize solution vector with proper size
-    x = np.zeros(1)
+    x = np.zeros(A.shape[1])
 
     # TODO: Run backsubstitution and fill solution vector, raise ValueError if no/infinite solutions exist
-
+    for row in range(A.shape[0] - 1, -1, -1):
+        if A[row, row] == 0:
+            raise ValueError()
+        for i in A[row, :row]:
+            if i != 0:
+                raise ValueError()
+        x[row] = b[row] / A[row, row]
+        for i in range(0, row):
+            b[i] -= x[row] * A[i, row]
     return x
 
 
