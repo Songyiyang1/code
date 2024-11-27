@@ -112,11 +112,20 @@ def compute_cholesky(M: np.ndarray) -> np.ndarray:
 
     # TODO check for symmetry and raise an exception of type ValueError
     (n, m) = M.shape
+    if not np.allclose(np.transpose(np.matmul(np.transpose(M), M)), np.matmul(np.transpose(M), M)):
+        raise ValueError()
 
     # TODO build the factorization and raise a ValueError in case of a non-positive definite input matrix
 
     L = np.zeros((n, n))
-
+    for i in range(n):
+        det = M[i, i] - np.sum(np.square(L[i, :i]))
+        if det < 0:
+            raise ValueError()
+        else:
+            L[i, i] = np.sqrt(det)
+        for j in range(i + 1, n):
+            L[j, i] = (M[j, i] - np.sum(L[i, :i] * L[j, :i])) / L[i, i]
     return L
 
 
@@ -141,9 +150,22 @@ def solve_cholesky(L: np.ndarray, b: np.ndarray) -> np.ndarray:
 
     # TODO Check the input for validity, raising a ValueError if this is not the case
     (n, m) = L.shape
+    if m != n: raise ValueError()
+    for i in range(n):
+        for j in range(i + 1, n):
+            if L[i, j] != 0:
+                raise ValueError()
 
     # TODO Solve the system by forward- and backsubstitution
     x = np.zeros(m)
+    # fowardsubstitution:
+    for row in range(n):
+        if L[row, row] == 0:
+            raise ValueError()
+        x[row] = b[row] / L[row, row]
+        for i in range(row + 1, n):
+            b[i] -= x[row] * L[i, row]
+    x = back_substitution(np.transpose(L), x)
 
     return x
 

@@ -5,6 +5,7 @@ import datetime
 
 import unittest
 import tomograph
+from main import compute_cholesky
 from main import gaussian_elimination
 from main import back_substitution
 
@@ -24,9 +25,11 @@ class Tests(unittest.TestCase):
         print()
         print(back_substitution(A,b))
     def test_cholesky_decomposition(self):
-        pass
-        # TODO
-
+        A = np.array([[4, 12, -16],
+                      [12, 37, -43],
+                      [-16, -43, 98]],np.float64)
+        print(np.linalg.cholesky(A))
+        compute_cholesky(A)
     def test_solve_cholesky(self):
         pass
         # TODO
