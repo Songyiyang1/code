@@ -197,19 +197,29 @@ def setup_system_tomograph(n_shots: np.int64, n_rays: np.int64, n_grid: np.int64
     """
 
     # TODO: Initialize system matrix with proper size
-    L = np.zeros((1, 1))
+    n = np.square(n_grid)
+    m = n_rays
+    k = n_shots
+    L = np.zeros((m * k, n))
     # TODO: Initialize intensity vector
-    g = np.zeros(1)
+    g = np.zeros(m * k)
 
     # TODO: Iterate over equispaced angles, take measurements, and update system matrix and sinogram
-    theta = 0
+    pi = np.float64(np.pi)
+    for i in range(k):
+        theta = pi / k * i
+        intensities, ray_indices, isect_indices, lengths = tomograph.take_measurement(n_grid, n_rays, theta)
+        g[i * m:(i + 1) * m] = intensities
+        for j in range(len(ray_indices)):
+            ray, cell, length = ray_indices[j], isect_indices[j], lengths[j]
+            L[i * m + ray, cell] = length
+
     # Take a measurement with the tomograph from direction r_theta.
     # intensities: measured intensities for all <n_rays> rays of the measurement. intensities[n] contains the intensity for the n-th ray
     # ray_indices: indices of rays that intersect a cell
     # isect_indices: indices of intersected cells
     # lengths: lengths of segments in intersected cells
     # The tuple (ray_indices[n], isect_indices[n], lengths[n]) stores which ray has intersected which cell with which length. n runs from 0 to the amount of ray/cell intersections (-1) of this measurement.
-    intensities, ray_indices, isect_indices, lengths = tomograph.take_measurement(n_grid, n_rays, theta)
 
     return [L, g]
 
@@ -237,12 +247,16 @@ def compute_tomograph(n_shots: np.int64, n_rays: np.int64, n_grid: np.int64) -> 
 
     # Setup the system describing the image reconstruction
     [L, g] = setup_system_tomograph(n_shots, n_rays, n_grid)
-
     # TODO: Solve for tomographic image using your Cholesky solver
     # (alternatively use Numpy's Cholesky implementation)
 
+    #c=np.dot(np.dot(np.linalg.inv(np.dot(np.transpose(L),L)),np.transpose(L)),g)
+
+    M=np.dot(np.transpose(L),L)
+    b=np.dot(np.transpose(L),g)
+    c=solve_cholesky(compute_cholesky(M),b)
     # TODO: Convert solution of linear system to 2D image
-    tim = np.zeros((n_grid, n_grid))
+    tim = c.reshape(n_grid, n_grid)
 
     return tim
 

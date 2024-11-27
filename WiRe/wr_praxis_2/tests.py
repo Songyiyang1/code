@@ -5,9 +5,11 @@ import datetime
 
 import unittest
 import tomograph
+from WiRe.wr_praxis_2.main import setup_system_tomograph
 from main import compute_cholesky
 from main import gaussian_elimination
 from main import back_substitution
+from main import compute_tomograph
 
 
 class Tests(unittest.TestCase):
@@ -33,6 +35,9 @@ class Tests(unittest.TestCase):
     def test_solve_cholesky(self):
         pass
         # TODO
+
+    def test_set_up(self):
+        setup_system_tomograph(64,64,32)
 
     def test_compute_tomograph(self):
         t = datetime.datetime.now()
