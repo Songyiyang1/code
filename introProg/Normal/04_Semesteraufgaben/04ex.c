@@ -22,7 +22,8 @@ Dieses Struct dient als Implementierungsdetail.
 Wer von außen mit einer DoublyLinkedList arbeitet,
 bekommt Nodes nie direkt zu sehen.
 */
-typedef struct Node {
+typedef struct Node
+{
     /* Der Datenwert, der in der Node gespeichert ist. */
     int data;
     /* Pointer auf die vorige Node, oder NULL, falls es keine vorige Node gibt. */
@@ -32,7 +33,8 @@ typedef struct Node {
 } Node;
 
 /* Eine doppelt verkettete Liste. */
-typedef struct {
+typedef struct
+{
     /* Pointer auf die erste Node der Liste. */
     Node *head;
     /* Pointer auf die letzte Node der Liste. */
@@ -47,7 +49,15 @@ Aufgabe 1: Suche
 Implementieren Sie die Funktion `find_node`, die den ersten Knoten in der Liste findet,
 wo `data` gleich x ist. Falls kein solcher Knoten existiert, geben Sie NULL zurück.
 */
-Node *find_node(DoublyLinkedList *list, int x) {
+Node *find_node(DoublyLinkedList *list, int x)
+{
+    Node *node = list->head;
+    while (node != NULL)
+    {
+        if (node->data == x)
+            return node;
+        node = node->next;
+    }
     return NULL;
 }
 
@@ -59,8 +69,20 @@ wo `data` gleich x ist. Achten Sie darauf, die Verbindungen zwischen den Knoten 
 und den Speicher des entfernten Knotens freizugeben. Aktualisieren Sie auch die Größe der Liste.
 Geben Sie zurück, ob ein Knoten erfolgreich entfernt wurde.
 */
-bool remove_node(DoublyLinkedList *list, int x) {
-    return false;
+bool remove_node(DoublyLinkedList *list, int x)
+{
+    Node *node = find_node(list, x);
+    if (node == NULL)
+        return false;
+    if (node->prev != NULL)
+        node->prev->next = node->next;
+    else list->head=node->next;
+    if (node->next != NULL)
+        node->next->prev = node->prev;
+    else list->tail=node->prev;
+    free(node);
+    list->size--;
+    return true;
 }
 
 /*
@@ -71,6 +93,9 @@ aus der Liste entfernt. Geben Sie zurück, wie viele Knoten entfernt wurden.
 
 Hinweis: Verwenden Sie dabei die Funktionen `find_node` und `remove_node`.
 */
-int remove_all(DoublyLinkedList *list, int x) {
-    return -1;
+int remove_all(DoublyLinkedList *list, int x)
+{
+    int tmp=list->size;
+    while (find_node(list,x)!=NULL) remove_node(list,x);
+    return tmp-list->size;
 }
