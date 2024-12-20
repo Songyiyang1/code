@@ -1,1 +1,2 @@
-sudo java -jar Mars4_5.jar
+#!/bin/bash
+java -jar Mars4_5.jar

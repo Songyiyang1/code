@@ -127,9 +127,9 @@ _rotate_mask_loop_end:
 	#+ BITTE VERVOLLSTAENDIGEN: Persoenliche Angaben zur Hausaufgabe
 	#+ -------------------------------------------------------------
 
-	# Vorname:
-	# Nachname:
-	# Matrikelnummer:
+	# Vorname:Yiyang
+	# Nachname:Song
+	# Matrikelnummer:509691
 
 	#+ Loesungsabschnitt
 	#+ -----------------

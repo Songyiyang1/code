@@ -76,18 +76,38 @@ _main_buffer_loop_end:
 	#+ BITTE VERVOLLSTAENDIGEN: Persoenliche Angaben zur Hausaufgabe
 	#+ -------------------------------------------------------------
 
-	# Vorname:
-	# Nachname:
-	# Matrikelnummer:
+	# Vorname:Yiyang
+	# Nachname:Song
+	# Matrikelnummer:509691
 
 	#+ Loesungsabschnitt
 	#+ -----------------
 
 .data
 
-test_n: .word 13
+test_n: .word 4
 
 .text
 
-collatz:
+collatz:#init
+	move $t0,$a1
+	j loop_start
+	
+loop_start: #t0,t1 shouldnt be changed!!!!
+	li $t1,1 #constant "1"
+	sll $t3,$v0,2#t3=4*size
+	add $t3,$t3,$a0#t3 is the adress
+	sw $t0,0($t3)#save value
+	add $v0,$v0,$t1 #size++,$v0 ist already reseted to 0
+	beq $t0,$t1,loop_end #exit condition
+	andi $t2, $t0, 1   # $t1 = $t0 & 1 (1->odd)(0->even)
+	beq $t2,$zero,even
+	add $t3,$t0,$t0 #odd (t3 tmep. variable = 2*n)
+	add $t0,$t3,$t0
+	add $t0,$t0,$t1#3n+1
+	j loop_start
+even:
+	srl $t0,$t0,1
+	j loop_start
+loop_end:
 	jr $ra
