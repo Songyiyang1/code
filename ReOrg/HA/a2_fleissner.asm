@@ -150,4 +150,38 @@ test_mask:
 .text
 
 fleissner:
+	addi $sp,$sp,-4
+	sw $ra,0($sp)
+	move $t1,$a1 #t1->text
+	li $t7,36 #maximal index
+	li $t6,0 #position
+	li $t5,0 #t5 represent the index of mask (also of buf)
+loop:
+	beq $t6,$t7,end_loop #all letters in Text are in the ans-string
+	beq $t5,$t7,rotate
+	add $t0,$t5,$a2
+	lb $t4,0($t0)
+	bne $t4,$zero,fill #"1"at position $t5
+	addi $t5,$t5,1 #index++
+	j loop
+fill:
+	add $t0,$t6,$a1
+	lb $t4,0($t0)
+	add $t0,$t5,$a0
+	sb $t4,0($t0)
+	addi $t5,$t5,1
+	addi $t6,$t6,1
+	j loop
+rotate:
+	addi $sp,$sp,-4 #tmp.
+	sw $a0,0($sp)
+	move $a0,$a2
+	jal rotate_mask
+	lw $a0,0($sp)
+	addi $sp,$sp,4 #load tmp.
+	li $t5,0
+	j loop
+end_loop:
+	lw $ra,0($sp)
+	addi $sp,$sp,4
 	jr $ra
