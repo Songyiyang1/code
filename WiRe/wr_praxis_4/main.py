@@ -76,19 +76,23 @@ def natural_cubic_interpolation(x: np.ndarray, y: np.ndarray) -> list:
     assert (x.size == y.size)
     # TODO construct linear system with natural boundary conditions
     a = np.zeros(((x.size - 1) * 4, (x.size - 1) * 4))
-    a[0, 0], a[0, 1], a[-1, -4], a[-1, -3] = 6 * x[0], 2, 6 * x[- 1], 2  # natural boundary conditions
+
     index = 0
-    for i in range(1, x.size * 4 - 7, 4):
-        a[i, i - 1], a[i, i], a[i, i + 1], a[i, i + 2] = x[index] ** 3, x[index] ** 2, x[index], 1
-        a[i + 1, i - 1], a[i + 1, i], a[i + 1, i + 1], a[i + 1, i + 2] = x[index + 1] ** 3, x[index + 1] ** 2, x[index + 1], 1
-        a[i + 2, i - 1], a[i + 2, i], a[i + 2, i + 1], a[i + 2, i + 3], a[i + 2, i + 4], a[i + 2, i + 5] = 3 * x[index + 1] ** 2, 2 * x[index + 1], 1, -3 * x[index + 1] ** 2, -2 * x[index + 1], -1
-        a[i + 3, i - 1], a[i + 3, i], a[i + 3, i + 3], a[i + 3, i + 4] = 6 * x[index + 1], 2, -6 * x[index + 2], -2
+    for i in range(0, x.size * 4 - 10, 4):
+        a[i, i], a[i, i+1], a[i, i + 2], a[i, i + 3] = x[index] ** 3, x[index] ** 2, x[index], 1
+        a[i + 1, i], a[i + 1, i+ 1], a[i + 1, i + 2], a[i + 1, i +3] = x[index + 1] ** 3, x[index + 1] ** 2, x[
+            index + 1], 1
+        a[i + 2, i], a[i + 2, i+1], a[i + 2, i + 2], a[i + 2, i + 4], a[i + 2, i + 5], a[i + 2, i + 6] = 3 * x[
+            index + 1] ** 2, 2 * x[index + 1], 1, -3 * x[index + 1] ** 2, -2 * x[index + 1], -1
+        a[i + 3, i], a[i + 3, i+1], a[i + 3, i + 4], a[i + 3, i + 5] = 6 * x[index + 1], 2, -6 * x[index + 1], -2
         index += 1
 
-    a[-3, -4], a[-3, -3], a[-3, -2], a[-3, -1] = x[-2] ** 3, x[-2] ** 2, x[-2], 1
-    a[-2, -4], a[-2, -3], a[-2, -2], a[-2, -1] = x[-1] ** 3, x[- 1] ** 2, x[- 1], 1  # the rest
 
-    '''print(x)
+    a[-4, -4], a[-4, -3], a[-4, -2], a[-4, -1] = x[-2] ** 3, x[-2] ** 2, x[-2], 1
+    a[-3, -4], a[-3, -3], a[-3, -2], a[-3, -1] = x[-1] ** 3, x[- 1] ** 2, x[- 1], 1  # the rest
+    a[-2, 0], a[-2, 1], a[-1, -4], a[-1, -3] = 6 * x[0], 2, 6 * x[- 1], 2  # natural boundary conditions
+    '''
+    print(x)
     for i in range(a.shape[0]):
         print()
         for j in range(a.shape[1]):
@@ -97,7 +101,7 @@ def natural_cubic_interpolation(x: np.ndarray, y: np.ndarray) -> list:
     print()'''
     b = np.zeros(((x.size - 1) * 4))
     index = 0
-    for i in range(1, x.size * 4 - 4, 4):
+    for i in range(0, x.size * 4 - 4, 4):
         b[i] = y[index]
         b[i + 1] = y[index + 1]
         index += 1
@@ -138,8 +142,8 @@ def periodic_cubic_interpolation(x: np.ndarray, y: np.ndarray) -> list:
 
     a[-4, -4], a[-4, -3], a[-4, -2], a[-4, -1] = x[-2] ** 3, x[-2] ** 2, x[-2], 1
     a[-3, -4], a[-3, -3], a[-3, -2], a[-3, -1] = x[-1] ** 3, x[- 1] ** 2, x[- 1], 1  # the rest
-    a[-2, 0], a[-2, 1],a[-2,2] ,a[-2, -4], a[-2, -3],a[-2,-2] = 3*x[0]**2,2*x[0],1,-3*x[-1]**2,2*x[-1],-1
-    a[-1,0],a[-1,1],a[-1,-4],a[-1,-3]=6*x[0],2,-6*x[-1],-2 # natural boundary conditions
+    a[-2, 0], a[-2, 1],a[-2,2] ,a[-2, -4], a[-2, -3],a[-2,-2] = 3*x[0]**2,2*x[0],1,-3*x[-1]**2,-2*x[-1],-1
+    a[-1,0],a[-1,1],a[-1,-4],a[-1,-3]=6*x[0],2,-6*x[-1],-2 # periodic boundary conditions
     b = np.zeros(((x.size - 1) * 4))
     index = 0
     for i in range(0, x.size * 4 - 4, 4):
@@ -152,7 +156,6 @@ def periodic_cubic_interpolation(x: np.ndarray, y: np.ndarray) -> list:
     # TODO extract local interpolation coefficients from solution
     for i in range( 0,ans.size, 4):
         spline.append(np.poly1d(ans[i:i + 4]))
-    print(ans)
     return spline
 
 
