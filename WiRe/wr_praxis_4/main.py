@@ -23,10 +23,13 @@ def lagrange_interpolation(x: np.ndarray, y: np.ndarray) -> (np.poly1d, list):
     base_functions = []
 
     # TODO: Generate Lagrange base polynomials and interpolation polynomial
-
+    for i in range(x.size):
+        base_functions.append(1)
+        for j in range(x.size):
+            if i != j:
+                base_functions[i] *= np.poly1d([1, -x[j]]) / (x[i] - x[j])
+        polynomial += y[i] * base_functions[i]
     return polynomial, base_functions
-
-
 
 
 def hermite_cubic_interpolation(x: np.ndarray, y: np.ndarray, yp: np.ndarray) -> list:
@@ -46,8 +49,13 @@ def hermite_cubic_interpolation(x: np.ndarray, y: np.ndarray, yp: np.ndarray) ->
 
     spline = []
     # TODO compute piecewise interpolating cubic polynomials
+    for i in range(x.size - 1):
+        a = np.array([(x[i] ** 3, x[i] ** 2, x[i], 1), (x[i + 1] ** 3, x[i + 1] ** 2, x[i + 1], 1),
+                      (3 * x[i] ** 2, 2 * x[i], 1, 0), (3 * x[i + 1] ** 2, 2 * x[i + 1], 1, 0)])
+        b = np.array([y[i], y[i + 1], yp[i], yp[i + 1]])
+        ans = np.linalg.solve(a, b)
+        spline.append(np.poly1d(ans))
     return spline
-
 
 
 ####################################################################################################
@@ -67,13 +75,38 @@ def natural_cubic_interpolation(x: np.ndarray, y: np.ndarray) -> list:
 
     assert (x.size == y.size)
     # TODO construct linear system with natural boundary conditions
+    a = np.zeros(((x.size - 1) * 4, (x.size - 1) * 4))
+    a[0, 0], a[0, 1], a[-1, -4], a[-1, -3] = 6 * x[0], 2, 6 * x[- 1], 2  # natural boundary conditions
+    index = 0
+    for i in range(1, x.size * 4 - 7, 4):
+        a[i, i - 1], a[i, i], a[i, i + 1], a[i, i + 2] = x[index] ** 3, x[index] ** 2, x[index], 1
+        a[i + 1, i - 1], a[i + 1, i], a[i + 1, i + 1], a[i + 1, i + 2] = x[index + 1] ** 3, x[index + 1] ** 2, x[index + 1], 1
+        a[i + 2, i - 1], a[i + 2, i], a[i + 2, i + 1], a[i + 2, i + 3], a[i + 2, i + 4], a[i + 2, i + 5] = 3 * x[index + 1] ** 2, 2 * x[index + 1], 1, -3 * x[index + 1] ** 2, -2 * x[index + 1], -1
+        a[i + 3, i - 1], a[i + 3, i], a[i + 3, i + 3], a[i + 3, i + 4] = 6 * x[index + 1], 2, -6 * x[index + 2], -2
+        index += 1
 
+    a[-3, -4], a[-3, -3], a[-3, -2], a[-3, -1] = x[-2] ** 3, x[-2] ** 2, x[-2], 1
+    a[-2, -4], a[-2, -3], a[-2, -2], a[-2, -1] = x[-1] ** 3, x[- 1] ** 2, x[- 1], 1  # the rest
+
+    '''print(x)
+    for i in range(a.shape[0]):
+        print()
+        for j in range(a.shape[1]):
+            print(format(a[i,j],), end=" ")
+            
+    print()'''
+    b = np.zeros(((x.size - 1) * 4))
+    index = 0
+    for i in range(1, x.size * 4 - 4, 4):
+        b[i] = y[index]
+        b[i + 1] = y[index + 1]
+        index += 1
     # TODO solve linear system for the coefficients of the spline
-
+    ans = np.linalg.solve(a, b)
     spline = []
     # TODO extract local interpolation coefficients from solution
-
-
+    for i in range(0, ans.size, 4):
+        spline.append(np.poly1d(ans[i:i + 4]))
     return spline
 
 
@@ -91,22 +124,43 @@ def periodic_cubic_interpolation(x: np.ndarray, y: np.ndarray) -> list:
 
     assert (x.size == y.size)
     # TODO: construct linear system with periodic boundary conditions
+    a = np.zeros(((x.size - 1) * 4, (x.size - 1) * 4))
+    a[0, 0], a[0, 1],a[0,2] ,a[0, -4], a[0, -3],a[0,-2] = 3*x[0]**2,2*x[0],1,-3*x[-1]**2,2*x[-1],-1
+    a[-1,0],a[-1,1],a[-1,-4],a[-1,-3]=6*x[0],2,-6*x[-1],-2# natural boundary conditions
+    index = 0
+    for i in range(1, x.size * 4 - 7, 4):
+        a[i, i - 1], a[i, i], a[i, i + 1], a[i, i + 2] = x[index] ** 3, x[index] ** 2, x[index], 1
+        a[i + 1, i - 1], a[i + 1, i], a[i + 1, i + 1], a[i + 1, i + 2] = x[index + 1] ** 3, x[index + 1] ** 2, x[
+            index + 1], 1
+        a[i + 2, i - 1], a[i + 2, i], a[i + 2, i + 1], a[i + 2, i + 3], a[i + 2, i + 4], a[i + 2, i + 5] = 3 * x[
+            index + 1] ** 2, 2 * x[index + 1], 1, -3 * x[index + 1] ** 2, -2 * x[index + 1], -1
+        a[i + 3, i - 1], a[i + 3, i], a[i + 3, i + 3], a[i + 3, i + 4] = 6 * x[index + 1], 2, -6 * x[index + 2], -2
+        index += 1
 
+    a[-3, -4], a[-3, -3], a[-3, -2], a[-3, -1] = x[-2] ** 3, x[-2] ** 2, x[-2], 1
+    a[-2, -4], a[-2, -3], a[-2, -2], a[-2, -1] = x[-1] ** 3, x[- 1] ** 2, x[- 1], 1  # the rest
+
+    b = np.zeros(((x.size - 1) * 4))
+    index = 0
+    for i in range(1, x.size * 4 - 4, 4):
+        b[i] = y[index]
+        b[i + 1] = y[index + 1]
+        index += 1
     # TODO solve linear system for the coefficients of the spline
-
+    ans = np.linalg.solve(a, b)
     spline = []
     # TODO extract local interpolation coefficients from solution
-
+    for i in range( 0,ans.size, 4):
+        spline.append(np.poly1d(ans[i:i + 4]))
 
     return spline
 
 
 if __name__ == '__main__':
+    x = np.array([1.0, 2.0, 3.0, 4.0])
+    y = np.array([3.0, 2.0, 4.0, 1.0])
 
-    x = np.array( [1.0, 2.0, 3.0, 4.0])
-    y = np.array( [3.0, 2.0, 4.0, 1.0])
-
-    splines = natural_cubic_interpolation( x, y)
+    splines = natural_cubic_interpolation(x, y)
 
     # # x-values to be interpolated
     # keytimes = np.linspace(0, 200, 11)
