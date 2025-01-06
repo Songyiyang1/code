@@ -238,7 +238,7 @@ def animate(keytime, keyframe, interpolate):
             curves_x.append(float(t))
             curves_y = np.c_[curves_y, curframe]
         for i in range(len(curves)):
-            curves[i].set_data(curves_x, curves_y[i].reshape(-1))
+            curves[i].set_data(curves_x, curves_y[i])
 
         return stickguy.left_arm, stickguy.right_arm, stickguy.spine, stickguy.left_leg, stickguy.right_leg
 
