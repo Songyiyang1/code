@@ -136,12 +136,21 @@ def fft(data: np.ndarray) -> np.ndarray:
         raise ValueError
 
     # TODO: first step of FFT: shuffle data
-
+    data=shuffle_bit_reversed_order(data)
 
     # TODO: second step, recursively merge transforms
-
+    for m in range(int(np.log2(n))-1):
+        for k in range(2**m):
+            p = np.exp(-2 * np.pi * 1j * k / 2 ** (m + 1))
+            i=k
+            while i<n:
+                j=i+2**m
+                p*=data[j]
+                data[j]=data[i]-p
+                data[i]+=p
+                i+=2**m+1
     # TODO: normalize fft signal
-
+    fdata=data
     return fdata
 
 
