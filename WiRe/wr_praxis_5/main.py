@@ -90,7 +90,7 @@ def shuffle_bit_reversed_order(data: np.ndarray) -> np.ndarray:
     """
 
     # TODO: implement shuffling by reversing index bits
-    length = len(bin(len(data)).replace('0b', ''))
+    length = int(np.log2(len(data)))
     check=[False]*len(data)
     for i in range(1,data.shape[0]):
         '''i_bi=bin(i).replace('0b','')
@@ -98,7 +98,7 @@ def shuffle_bit_reversed_order(data: np.ndarray) -> np.ndarray:
         i_index=int(i_bi,2)'''
         i_index=0
         copy=i
-        for j in range(length-1):
+        for j in range(length):
             i_index*=2
             i_index+=copy%2
             copy=int(copy/2)
@@ -136,21 +136,21 @@ def fft(data: np.ndarray) -> np.ndarray:
         raise ValueError
 
     # TODO: first step of FFT: shuffle data
-    data=shuffle_bit_reversed_order(data)
+    fdata=shuffle_bit_reversed_order(fdata)
 
     # TODO: second step, recursively merge transforms
     for m in range(int(np.log2(n))-1):
         for k in range(2**m):
             p = np.exp(-2 * np.pi * 1j * k / 2 ** (m + 1))
             i=k
-            while i<n:
+            while i+2**m<n:
                 j=i+2**m
-                p*=data[j]
-                data[j]=data[i]-p
-                data[i]+=p
+                p_copy=p*fdata[j]
+                fdata[j]=fdata[i]-p_copy
+                fdata[i]+=p_copy
                 i+=2**m+1
     # TODO: normalize fft signal
-    fdata=data
+
     return fdata
 
 
