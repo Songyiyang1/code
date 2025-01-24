@@ -170,8 +170,8 @@ def generate_tone(f: float = 261.626, num_samples: int = 44100) -> np.ndarray:
     data = np.zeros(num_samples)
 
     # TODO: Generate sine wave with proper frequency
-    for i in range(num_samples):
-        data[i]=np.sin(2*np.pi*f*i/num_samples)
+    data=np.linspace(x_min, x_max, num_samples)
+    data=np.sin(2*np.pi*f*data)
     return data
 
 
@@ -192,12 +192,13 @@ def low_pass_filter(adata: np.ndarray, bandlimit: int = 1000, sampling_rate: int
     bandlimit_index = int(bandlimit*adata.size/sampling_rate)
 
     # TODO: compute Fourier transform of input data
-
+    fdata = np.fft.fft(adata)
     # TODO: set high frequencies above bandlimit to zero, make sure the almost symmetry of the transform is respected.
-
+    for i in range(bandlimit_index+1,adata.size-bandlimit_index):
+        fdata[i]=0
     # TODO: compute inverse transform and extract real component
     adata_filtered = np.zeros(adata.shape[0])
-
+    adata_filtered = np.real(np.fft.ifft(fdata))
     return adata_filtered
 
 
