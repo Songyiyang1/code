@@ -127,7 +127,6 @@ def fft(data: np.ndarray) -> np.ndarray:
     Forbidden:
     - numpy.fft.*
     """
-
     fdata = np.asarray(data, dtype='complex128')
     n = fdata.size
 
@@ -137,9 +136,8 @@ def fft(data: np.ndarray) -> np.ndarray:
 
     # TODO: first step of FFT: shuffle data
     fdata=shuffle_bit_reversed_order(fdata)
-
     # TODO: second step, recursively merge transforms
-    for m in range(int(np.log2(n))-1):
+    for m in range(int(np.log2(n))):
         for k in range(2**m):
             p = np.exp(-2 * np.pi * 1j * k / 2 ** (m + 1))
             i=k
@@ -148,9 +146,9 @@ def fft(data: np.ndarray) -> np.ndarray:
                 p_copy=p*fdata[j]
                 fdata[j]=fdata[i]-p_copy
                 fdata[i]+=p_copy
-                i+=2**m+1
+                i+=2**(m+1)
     # TODO: normalize fft signal
-
+    fdata/=np.sqrt(n)
     return fdata
 
 
@@ -172,7 +170,8 @@ def generate_tone(f: float = 261.626, num_samples: int = 44100) -> np.ndarray:
     data = np.zeros(num_samples)
 
     # TODO: Generate sine wave with proper frequency
-
+    for i in range(num_samples):
+        data[i]=np.sin(2*np.pi*f*i/num_samples)
     return data
 
 
