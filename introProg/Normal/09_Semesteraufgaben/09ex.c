@@ -46,17 +46,19 @@ Aufgabe 2:
 
 Gegeben ein Array `arr`, geben Sie den zugehörigen linksvollständigen Binärbaum zurück.
 */
-void dfs(TreeNode *t, Array array, int index)
+TreeNode *dfs(Array array, int index)
 {
-    if(index>=array.len) return;
-    t->item=array.arr[index];
-    dfs(t->left,array,2*index+1);
-    dfs(t->right,array,2*index+2);
-    return;
+    if (index >= array.len)
+        return NULL;
+    TreeNode *t = (TreeNode *)malloc(sizeof(TreeNode));
+    t->item = array.arr[index];
+    t->left = dfs(array, 2 * index + 1);
+    t->right = dfs(array, 2 * index + 2);
+    return t;
 }
 TreeNode *array_to_tree(Array arr)
 {
-    TreeNode *t=(TreeNode*)malloc(sizeof(TreeNode)*arr.len);
-    dfs(t,arr,0);
-    return t;
+    if (arr.len == 0)
+        return NULL;
+    return dfs(arr, 0);
 }
