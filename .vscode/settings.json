@@ -7,6 +7,7 @@
         "stdbool.h": "c",
         "stdlib.h": "c",
         "tree.h": "c",
-        "array.h": "c"
+        "array.h": "c",
+        "height_tree.h": "c"
     }
 }
