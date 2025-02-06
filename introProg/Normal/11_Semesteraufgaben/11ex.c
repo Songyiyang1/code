@@ -15,10 +15,14 @@ clang -std=c11 -g -Wall -Werror 11ex_test.c -o 11ex_test.o -lm && valgrind --lea
 #include <stdbool.h>
 #include <stdlib.h>
 
-size_t height_or_zero(HeightTreeNode *t) {
-    if (t == NULL) {
+size_t height_or_zero(HeightTreeNode *t)
+{
+    if (t == NULL)
+    {
         return 0;
-    } else {
+    }
+    else
+    {
         return t->height;
     }
 }
@@ -38,26 +42,40 @@ das Item des Elternkotens (oder NULL für die Wurzel).
 Die Baumausgabe nimmt den zurückgegebenen Knoten als Wurzel. Sollte die Baumausgabe komplett
 überraschend aussehen, könnte das gut an einer falsch zurückgegebenen Wurzel liegen.
 */
-HeightTreeNode *rotate_left(HeightTreeNode *t) {
-    HeightTreeNode* root=t;
-    HeightTreeNode* y=t->right;
-    t->right=y->left;
-    if(y->left) y->left->parent=t;
-    y->parent=t->parent;
-    if(t->parent) root=y;
-    else if(t==t->parent->left) t->parent->left=y;
-    else t->parent->right=y;
-    y->left=t;
-    t->parent=y;
+HeightTreeNode *rotate_left(HeightTreeNode *t)
+{
+    HeightTreeNode *root = t;
+    HeightTreeNode *y = t->right;
+    t->right = y->left;
+    if (y->left)
+        y->left->parent = t;
+    y->parent = t->parent;
+    if (t->parent == NULL)
+        root = y;
+    else if (t == t->parent->left)
+        t->parent->left = y;
+    else
+        t->parent->right = y;
+    y->left = t;
+    t->parent = y;
+    if (height_or_zero(t->right) > height_or_zero(t->left))
+        t->height = height_or_zero(t->right) + 1;
+    else
+        t->height = height_or_zero(t->left) + 1;
+    if (height_or_zero(t) > height_or_zero(y->right))
+        y->height = t->height + 1;
+    else
+        y->height = height_or_zero(y->right) + 1;
     return root;
 }
 
 /*
 Die vier möglichen Sequenzen von Rotationen, um einen Beinahe-AVL-Baum in einen AVL-Baum zu überführen.
 */
-typedef enum Rotations_ {
-    Left, /* eine Linksrotation */
-    Right, /* eine Rechtsrotation */
+typedef enum Rotations_
+{
+    Left,                    /* eine Linksrotation */
+    Right,                   /* eine Rechtsrotation */
     DoubleRotationLeftRight, /* Doppelrotation: erst Linksrotation, dann Rechtsrotation */
     DoubleRotationRightLeft, /* Doppelrotation: erst Rechtsrotation, dann Linksrotation */
 } Rotations;
@@ -67,6 +85,19 @@ Aufgabe 2:
 
 Gegeben ein Beinahe-AVL-Baum mit korrekten Höhenwerten, geben Sie zurück, welche Rotationen ihn zu einem AVL-Baum machen.
 */
-Rotations determine_rotations(HeightTreeNode *t) {
+Rotations determine_rotations(HeightTreeNode *t)
+{
+    if (height_or_zero(t->left) > height_or_zero(t->right) + 1)
+    {
+        if (height_or_zero(t->left->left) < height_or_zero(t->left->right))
+            return DoubleRotationLeftRight;
+        return Right;
+    }
+    else if (height_or_zero(t->right) > height_or_zero(t->left) + 1)
+    {
+        if (height_or_zero(t->right->right) < height_or_zero(t->right->left))
+            return DoubleRotationRightLeft;
+        return Left;
+    }
     return Left;
 }
