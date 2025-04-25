@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/AlgoDat.iml" filepath="$PROJECT_DIR$/.idea/AlgoDat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Material/Material.iml" filepath="$PROJECT_DIR$/Material/Material.iml" />
+      <module fileurl="file://$PROJECT_DIR$/songyiyang/songyiyang.iml" filepath="$PROJECT_DIR$/songyiyang/songyiyang.iml" />
+    </modules>
+  </component>
+</project>

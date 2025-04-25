@@ -1,0 +1,6 @@
+[submodule "AlgoDat/songyiyang"]
+	path = AlgoDat/songyiyang
+	url = git@git.tu-berlin.de:algodat-sose25/songyiyang.git
+[submodule "AlgoDat/Material"]
+	path = AlgoDat/Material
+	url = git@git.tu-berlin.de:algodat-sose25/material.git
