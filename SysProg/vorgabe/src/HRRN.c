@@ -24,7 +24,8 @@ process *HRRN_tick(process *running_process)
 		//find the largest ratio (it's always the next element of pointer)
 		while (pointer->next != NULL) {
 			float rr=calc_ratio(pointer->next->object);
-			if (rr>max_rr) {
+			//fifo
+			if (rr>=max_rr) {
 				max_rr=rr;
 				//the one element before max.
 				max_pointer=pointer;

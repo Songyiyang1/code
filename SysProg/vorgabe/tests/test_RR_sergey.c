@@ -6,8 +6,8 @@
 #include<stdio.h>
 
 #define PROCESS_COUNT   5
-#define RR_QUANTUM      2
-#define STRATEGY        HRRN
+#define RR_QUANTUM      4
+#define STRATEGY        RR
 
 int main()
 {
@@ -18,7 +18,7 @@ int main()
                                       {   3,      3,      0,      'C'},
                                       {   6,      2,      0,      'D'},
                                       {   8,      4,      0,      'E'}};
-  char* expected_result = "AAAAAAACCCBBBBDDEEEE";
+  char* expected_result = "AAAABBBBCCCAAADDEEEE";
   print_schedule_info(PROCESS_COUNT, STRATEGY, 0, processes);
 
   char* resulting_schedule = scheduler(processes,PROCESS_COUNT,STRATEGY,RR_QUANTUM);

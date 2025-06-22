@@ -35,7 +35,9 @@ process* LCFSPR_new_arrival(process* arriving_process, process* running_process)
     if (running_process==NULL) {
         return arriving_process;
     }
-    queue_add(running_process, waiting_queue);
+    if (running_process->time_left >0) {
+        queue_add(running_process, waiting_queue);
+    }
     return arriving_process;
 }
 

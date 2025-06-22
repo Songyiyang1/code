@@ -1,5 +1,7 @@
 #include "../lib/MLF.h"
 
+#include <limits.h>
+
 static queue_object **MLF_queues;
 //You can add more global variables here
 static int level;
@@ -9,6 +11,11 @@ static unsigned int* quantum;
 process *MLF_tick(process *running_process)
 {
 	// TODO
+	if (running_process!=NULL && running_process->time_left>0 && run_time<quantum[level]) {
+		running_process->time_left--;
+		run_time++;
+		return running_process;
+	}
 	//if process is done, kick it out from queue
 	if (running_process!=NULL && running_process->time_left<=0) {
 		if (level<3) {
@@ -59,10 +66,11 @@ int MLF_startup()
 {
 	// TODO
 	MLF_queues = malloc(4 * sizeof(queue_object *));
-	quantum = malloc(3 * sizeof(unsigned int));
+	quantum = malloc(4 * sizeof(unsigned int));
 	quantum[0] = 1;
 	quantum[1] = 2;
 	quantum[2] = 6;
+	quantum[3] = UINT_MAX;
 	if (MLF_queues == NULL)
 		return 1;
 	for (int i = 0; i < 4; i++) {
@@ -70,7 +78,7 @@ int MLF_startup()
 		if (MLF_queues[i] == NULL)
 			return 1;
 	}
-	level=4;
+	level=3;
 	return 0;
 }
 
