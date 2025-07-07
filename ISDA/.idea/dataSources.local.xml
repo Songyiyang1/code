@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal" created-in="PY-251.25410.159">
+    <data-source name="world_cup.db" uuid="86f9490f-28f9-40c9-bf50-f67c961aad1b">
+      <database-info product="DuckDB" version="v1.1.1" jdbc-version="1.0" driver-name="DuckDBJ" driver-version="1.0" dbms="UNKNOWN" exact-version="1.0" exact-driver-version="1.0">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="database" qname="@">
+            <node kind="schema" qname="@" />
+          </node>
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
+  </component>
+</project>

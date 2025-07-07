@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="hotelkette.db" uuid="7d7c9b4d-5b80-4c83-af0b-66fb23f383ff">
+    <data-source source="LOCAL" name="world_cup.db" uuid="86f9490f-28f9-40c9-bf50-f67c961aad1b">
       <driver-ref>duckdb</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.duckdb.DuckDBDriver</jdbc-driver>
-      <jdbc-url>jdbc:duckdb:$PROJECT_DIR$/hotelkette.db</jdbc-url>
+      <jdbc-url>jdbc:duckdb:$PROJECT_DIR$/world_cup/world_cup.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

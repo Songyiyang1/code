@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BackendCodeEditorMiscSettings">
+    <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
+  </component>
+  <component name="CMakeProjectFlavorService">
+    <option name="flavorId" value="CMakePlainProjectFlavor" />
+  </component>
+  <component name="CMakeRunConfigurationManager">
+    <generated>
+      <config projectName="vorgabe" targetName="build" />
+      <config projectName="vorgabe" targetName="pack" />
+      <config projectName="vorgabe" targetName="test" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ddc46f2b-a845-4c05-984f-35a446f9b714" name="更改" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../AlgoDat/Material" beforeDir="false" afterPath="$PROJECT_DIR$/../../../AlgoDat/Material" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../AlgoDat/songyiyang" beforeDir="false" afterPath="$PROJECT_DIR$/../../../AlgoDat/songyiyang" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../AlgoDat/songyiyang/Blatt06/src/DepthFirstPathsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../AlgoDat/songyiyang/Blatt06/src/DepthFirstPathsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../AlgoDat/songyiyang/Blatt06/src/MazeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../AlgoDat/songyiyang/Blatt06/src/MazeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../AlgoDat/songyiyang/Blatt06/src/RandomDepthFirstPathsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../AlgoDat/songyiyang/Blatt06/src/RandomDepthFirstPathsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ISDA/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ISDA/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ISDA/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ISDA/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ISDA/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ISDA/hotelkette.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ISDA/hotelkette.db.wal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/.idea/codeStyles/Project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/.idea/editor.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/lib/FCFS.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/lib/HRRN.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/lib/LCFSPR.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/lib/MLF.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/lib/PRIONP.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/lib/RR.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/lib/SRTN.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/lib/colors.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/lib/process.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/lib/queue.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/lib/scheduler.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/src/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/src/.idea/editor.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/src/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/src/.idea/src.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/src/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/src/FCFS.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/src/HRRN.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/src/LCFSPR.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/src/MLF.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/src/PRIONP.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/src/RR.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/src/SRTN.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/src/colors.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/src/queue.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/src/scheduler.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/submission.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/tests/helpers.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/tests/test_HRRN_complex.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/tests/test_HRRN_sergey_packed.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/tests/test_HRRN_sergey_smol.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/tests/test_HRRN_simple.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/tests/test_LCFSPR_complex.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/tests/test_LCFSPR_sergey_packed.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/tests/test_LCFSPR_sergey_smol.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/tests/test_LCFSPR_simple.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/tests/test_MLF_complex.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/tests/test_MLF_sergey_overkill.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/tests/test_MLF_sergey_packed.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/tests/test_MLF_sergey_smol.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/tests/test_MLF_simple.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/tests/test_PRIONP_complex.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/tests/test_PRIONP_sergey_packed.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/tests/test_PRIONP_sergey_smol.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/tests/test_PRIONP_simple.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/tests/test_RR_complex.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/tests/test_RR_sergey.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/tests/test_RR_sergey_hugequantum.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/tests/test_RR_sergey_packed.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/tests/test_RR_sergey_smol.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/tests/test_RR_sergey_tinyquantum.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/tests/test_RR_simple.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/tests/test_SRTN_complex.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/tests/test_SRTN_sergey_packed.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/tests/test_SRTN_sergey_smol.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/tests/test_SRTN_simple.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/tests/test_queue_complex.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../vorgabe/tests/test_queue_simple.c" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Songyiyang1&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:Songyiyang1/code.git&quot;,
+    &quot;accountId&quot;: &quot;9e86793c-01c7-4991-8188-4ee315843ff5&quot;
+  }
+}</component>
+  <component name="MakefileLocalSettings">
+    <option name="availableProjects">
+      <map>
+        <entry>
+          <key>
+            <ExternalProjectPojo>
+              <option name="name" value="vorgabe" />
+              <option name="path" value="$PROJECT_DIR$" />
+            </ExternalProjectPojo>
+          </key>
+          <value>
+            <list>
+              <ExternalProjectPojo>
+                <option name="name" value="vorgabe" />
+                <option name="path" value="$PROJECT_DIR$" />
+              </ExternalProjectPojo>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="projectSyncType">
+      <map>
+        <entry key="$PROJECT_DIR$" value="RE_IMPORT" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectApplicationVersion">
+    <option name="ide" value="CLion" />
+    <option name="majorVersion" value="2025" />
+    <option name="minorVersion" value="1.2" />
+    <option name="productBranch" value="Classic" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2zVNs0Crkig1Sqg3BtqtfLQsbbj" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Makefile 目标.build.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.RadMigrateCodeStyle&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/yiyangsong/Desktop/code/SysProg/HA2/vorgabe&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager" selected="原生应用程序.test">
+    <configuration name="build" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="vorgabe" TARGET_NAME="build" CONFIG_NAME="build" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="pack" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="vorgabe" TARGET_NAME="pack" CONFIG_NAME="pack" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="vorgabe" TARGET_NAME="test" CONFIG_NAME="test" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="build" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
+      <makefile filename="$PROJECT_DIR$/Makefile" target="build" workingDirectory="" arguments="">
+        <envs />
+      </makefile>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Makefile 目标.build" />
+      <item itemvalue="原生应用程序.build" />
+      <item itemvalue="原生应用程序.pack" />
+      <item itemvalue="原生应用程序.test" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Makefile 目标.build" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="ddc46f2b-a845-4c05-984f-35a446f9b714" name="更改" comment="" />
+      <created>1751812482980</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1751812482980</updated>
+      <workItem from="1751812484265" duration="16418000" />
+      <workItem from="1751906855425" duration="1344000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
